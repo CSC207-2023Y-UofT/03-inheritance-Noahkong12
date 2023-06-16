@@ -86,7 +86,7 @@ public abstract class Bag {
      *       The string should be the last item added to this Bag
      *       and the item should be removed from this Bag.
      *       Remember to modify numberOfContents accordingly.
-     *
+     * <p>
      * If there are no items in this Bag, return null.
      *
      * @return
@@ -114,3 +114,12 @@ public abstract class Bag {
         System.arraycopy(contents, 0, newContents, 0, numberOfContents);
         contents = newContents;
 
+    }
+    /**
+     * Enhances the bag. Subclasses should override this method to
+     * provide specific enhancement behavior.
+     */
+    public void enhance() {
+        // Default implementation: do nothing.
+    }
+}
