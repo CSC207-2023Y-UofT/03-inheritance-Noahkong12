@@ -1,4 +1,4 @@
-/*
+/**
  * This file defines an abstract class named Bag.
  * In this exercise, you will be writing a larger class according to
  * the TODOs we have left you. You may find the readings in chapter
@@ -13,9 +13,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
     /*
      * TODO: Create a constructor that takes two arguments:
@@ -26,9 +27,12 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
-
-
+    public Bag(String color, int capacity) {
+        this.color = color;
+        this.numberOfContents = 0;
+        this.capacity = capacity;
+        this.contents = new String[capacity];
+    }
 
     /*
      * TODO: Create a variety of 'getter' functions.
@@ -37,18 +41,25 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    public String getColor() {
+        return color;
+    }
 
+    public int getNumberOfContents() {
+        return numberOfContents;
+    }
 
-
+    public int getCapacity() {
+        return capacity;
+    }
 
     /*
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
-
-
-
-
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     /*
      * TODO: Create a method called addItem that takes in a String
@@ -60,10 +71,15 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
-
-
-
-
+    public boolean addItem(String item) {
+        if (numberOfContents < capacity) {
+            contents[numberOfContents] = item;
+            numberOfContents++;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * TODO: Create a method called popItem that returns a String.
@@ -75,10 +91,16 @@ public abstract class Bag {
      *
      * @return
      */
-
-
-
-
+    public String popItem() {
+        if (numberOfContents > 0) {
+            String item = contents[numberOfContents - 1];
+            contents[numberOfContents - 1] = null;
+            numberOfContents--;
+            return item;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Increase this bag's capacity by n.
@@ -87,31 +109,8 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        capacity += n;
+        String[] newContents = new String[capacity];
+        System.arraycopy(contents, 0, newContents, 0, numberOfContents);
+        contents = newContents;
 
-    }
-
-    /**
-     * Return the details of this Bag.
-     * This method requires you to have created the private
-     * instance variables mentioned above.
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return this.color + " Bag (" + this.numberOfContents + " / " +
-                this.capacity + ")";
-    }
-
-    /*
-     * Below we have defined an abstract method.
-     * This method takes no arguments and does not return anything.
-     * It increases the capacity of this Bag.
-     *
-     * You will need to implement this method in
-     * HandBag.java and CrossbodyBag.java.
-     *
-     * We recommend you look at HandBag.java first.
-     */
-    public abstract void enhance();
-}
