@@ -119,7 +119,5 @@ public abstract class Bag {
      * Enhances the bag. Subclasses should override this method to
      * provide specific enhancement behavior.
      */
-    public void enhance() {
-        // Default implementation: do nothing.
-    }
+    public abstract void enhance();
 }
